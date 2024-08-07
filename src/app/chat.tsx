@@ -20,6 +20,15 @@ const Chat = () => {
 
   const initialMessage: Message = {
     role: 'system',
+    content: 'Please enter your Game ID and phone number to proceed (format: GameID,PhoneNumber)'
+  };
+
+  const [userDetails, setUserDetails] = useState<{ gameId: string, phoneNumber: string }>({ gameId: '', phoneNumber: '' });
+  const [isUserDetailsCollected, setIsUserDetailsCollected] = useState<boolean>(false);
+
+
+  const mainMenuMessage: Message = {
+    role: 'system',
     content: 'Hey there! welcome to customer service. What can I do for you?.......Suno!! grahak seva mein aapka swagat hai',
     options: [
       { id: 'option1', text: 'General Questions - samanya sawal' },
@@ -27,8 +36,12 @@ const Chat = () => {
       { id: 'option3', text: 'Recharge Problem - recharge ki samasya' },
       { id: 'option4', text: 'Game issue - khel ank' },
       { id: 'option5', text: 'Withdraw Problem - samasaya vapas len' },
+      { id: 'option1', text: 'Birthday Bonus' },
+      { id: 'option2', text: 'Wagering' },
+      { id: 'option3', text: 'Frozen Account' },
     ]
   };
+
 
   useEffect(() => {
     // Initial bot message with options
@@ -48,30 +61,42 @@ const Chat = () => {
     setInput('');
     setLoading(true);
 
-    try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    if (!isUserDetailsCollected) {
+      const [gameId, phoneNumber] = input.split(',');
+      if (gameId && phoneNumber) {
+        setUserDetails({ gameId: gameId.trim(), phoneNumber: phoneNumber.trim() });
+        setIsUserDetailsCollected(true);
+        setMessages((prevMessages) => [...prevMessages, mainMenuMessage]);
+      } else {
+        setMessages((prevMessages) => [...prevMessages, { role: 'system', content: 'Invalid format. Please enter your Game ID and phone number in the format: GameID,PhoneNumber' }]);
+      }
+    } else {
+      // Existing code for handling main menu options
+      try {
+        await new Promise(resolve => setTimeout(resolve, 1000));
 
-      const botResponse: Message = {
-        role: 'system',
-        content: `You said: ${input}. Here are some options:`,
-        options: [
-          { id: 'option1', text: 'Tell me more' },
-          { id: 'option2', text: 'Go back' },
-        ]
-      };
+        const botResponse: Message = {
+          role: 'system',
+          content: `You said: ${input}. Here are some options:`,
+          options: [
+            { id: 'option1', text: 'Tell me more' },
+            { id: 'option2', text: 'Go back' },
+          ]
+        };
 
-      setMessages((prevMessages) => [...prevMessages, botResponse]);
-    } catch (error) {
-      console.error('Error communicating with ChatGPT:', error);
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { role: 'system', content: 'Failed to get a response. Please try again.' }
-      ]);
-    } finally {
-      setLoading(false);
+        setMessages((prevMessages) => [...prevMessages, botResponse]);
+      } catch (error) {
+        console.error('Error communicating with ChatGPT:', error);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { role: 'system', content: 'Failed to get a response. Please try again.' }
+        ]);
+      } finally {
+        setLoading(false);
+      }
     }
   };
+
 
   const handleOptionClick = async (optionText: string) => {
     const userMessage: Message = { role: 'user', content: optionText };
@@ -155,6 +180,58 @@ const Chat = () => {
             ]
           };
           break;
+
+        case 'Birthday Bonus':
+          botResponse = {
+            role: 'system',
+            content: `
+          <div class="formatted-text">
+            <strong>Goldsbet Delight To Celebrate your Birthday!</strong><br>
+            Kindly for claiming your Birthday bonus, you need to send us the following details on our email:<br><br>
+            - <strong>Game ID</strong><br>
+            - <strong>Aadhaar Card</strong><br><br>
+            <strong>Our Email:</strong> Goldsbetvip@gmail.com
+          </div>
+              `,
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
+          };
+          break;
+
+        case 'Wagering':
+          botResponse = {
+            role: 'system',
+            content: `
+            <div class="formatted-text">
+              <strong>Wagering</strong><br>
+              Apologies, you need to complete the wager set by the system before you can withdraw. Thank you for your cooperation.
+            </div>
+            `,
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
+          };
+          break;
+
+        case 'Frozen Account':
+          botResponse = {
+            role: 'system',
+            content: `
+          <div class="formatted-text">
+            <strong>Frozen Account</strong><br>
+            Players who open multiple or fraudulent accounts will be disqualified from the game. The remaining amount may be forfeited and the account will be frozen.
+          </div>
+              `,
+              options: [
+                { id: 'learn_more', text: 'Learn more' },
+                { id: 'main_menu', text: 'Go back to main menu' }
+              ]
+          };
+          break;
+
 
         // Recharge Problem Options Responses start here
         case 'How to recharge? - Recharge kaise kre?':
@@ -345,7 +422,7 @@ khel ko behatar dhang se samajhane ke lie krpaya khel ke niyam aur nirdesh padhe
           BANK NAME:<br>
           Name:<br><br>
           
-          Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided. Thank you.
+          Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided to Goldsbetvip@gmail.com. Thank you.
               `,
             options: [
               { id: 'learn_more', text: 'Learn more' },
