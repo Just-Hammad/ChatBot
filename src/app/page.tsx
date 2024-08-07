@@ -12,7 +12,7 @@ export default function Home() {
             className="h-12 w-12 rounded-full"
           />
           <div>
-            <h1 className="text-xl font-bold">Your AI Chat Bot</h1>
+            <h1 className="text-xl font-bold">Goldsbet</h1>
             <p className="text-sm text-gray-300">Ask anything</p>
           </div>
         </div>
