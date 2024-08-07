@@ -14,6 +14,7 @@ interface Message {
 
 const Chat = () => {
   const chatContainer = useRef<HTMLDivElement | null>(null);
+  const lastMessageRef = useRef<HTMLDivElement | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,7 +26,11 @@ const Chat = () => {
   //   role: 'system',
   //   content: 'Please enter your Game ID and phone number to proceed (format: GameID,PhoneNumber)'
   // };
-
+  useEffect(() => {
+    if (chatContainer.current) {
+      chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
+    }
+  }, [messages]);
 
   const initialMessage: Message = {
     role: 'system',
@@ -161,7 +166,7 @@ const Chat = () => {
               { id: 'option1', text: 'How to play game? - Game kaise khelen?' },
               { id: 'option2', text: 'Help me bind my bank account - Mere bank khaate ko Game se Jodne mein meree sahaayata karen.' },
               { id: 'option3', text: 'Help me bind my UPI account - Meri UPI Ko Game Account se Jodney Me Meri Sahatya karen' },
-              { id: 'option3', text: 'Forgot Password - Password bhool gaye' },
+              { id: 'option4', text: 'Forgot Password - Password bhool gaye' },
             ]
           };
           break;
@@ -216,7 +221,7 @@ const Chat = () => {
             Kindly for claiming your Birthday bonus, you need to send us the following details on our email:<br><br>
             - <strong>Game ID</strong><br>
             - <strong>Aadhaar Card</strong><br><br>
-            <strong>Our Email:</strong> Goldsbetvip@gmail.com
+            <strong>Our Email:</strong> <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a>
           </div>
               `,
             options: [
@@ -294,11 +299,11 @@ const Chat = () => {
         case 'My recharge has not come yet, please check - Mera recharge abhee tak nahi aya hai, kripya kr check kr len':
           botResponse = {
             role: 'system',
-            content: 'Please send us a screenshot of your PAYMENT RECEIPT with the exact date and time with amount and UTR number or reference number on our email on Goldsbetvip@gmail.com. Thank you. Humen apni Reciept bejhen Jis Pr samay aur Tareekh Dono Ho. Apni Receipt Humen iss Email Par Send Karen.',
-          options: [
-            { id: 'learn_more', text: 'Learn more' },
-            { id: 'main_menu', text: 'Go back to main menu' }
-          ]
+            content: 'Please send us a screenshot of your PAYMENT RECEIPT with the exact date and time with amount and UTR number or reference number on our email on <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a>. Thank you. Humen apni Reciept bejhen Jis Pr samay aur Tareekh Dono Ho. Apni Receipt Humen iss Email Par Send Karen.',
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
           };
           break;
 
@@ -479,7 +484,8 @@ const Chat = () => {
           BANK NAME:<br>
           Name:<br><br>
           
-          Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided to Goldsbetvip@gmail.com. Thank you.
+          Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided to <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a>
+. Thank you.
               `,
             options: [
               { id: 'learn_more', text: 'Learn more' },
@@ -561,7 +567,8 @@ const Chat = () => {
             content: `
             <div class="formatted-text">
               <strong>Why is my withdraw PROCESSING?</strong><br>
-              After reviewing our records, we can see that your withdrawal is currently being processed. Kindly exercise patience while waiting. Typically, withdrawals are processed promptly (within 5-10 minutes). However, there might be occasions where it could take up to a maximum of 24-72 hours due to potential delays from the bank. If the issue persists beyond the 24-72 hour waiting period, please mail us the precise withdrawal order number and attach a screenshot on Goldsbetvip@gmail.com. Thank you!
+              After reviewing our records, we can see that your withdrawal is currently being processed. Kindly exercise patience while waiting. Typically, withdrawals are processed promptly (within 5-10 minutes). However, there might be occasions where it could take up to a maximum of 24-72 hours due to potential delays from the bank. If the issue persists beyond the 24-72 hour waiting period, please mail us the precise withdrawal order number and attach a screenshot on <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a>
+. Thank you!
             </div>`,
             options: [
               { id: 'learn_more', text: 'Learn more' },
@@ -641,7 +648,11 @@ const Chat = () => {
         case 'I am playing the game and it suddenly closed':
           botResponse = {
             role: 'system',
-            content: 'To achieve improved outcomes, kindly begin by restarting your Game app and ensuring a reliable and stable internet connection. Following this, we recommend waiting for a minimum of 15 minutes before attempting to log in once more. Your cooperation is appreciated. Thank you!\n\nIf problem still persist,\nKindly try to do this. Go to your mobile phone settings>Manager App>Search the game application>Clear data cache then restart again your game account and try again. Thank you!'
+            content: 'To achieve improved outcomes, kindly begin by restarting your Game app and ensuring a reliable and stable internet connection. Following this, we recommend waiting for a minimum of 15 minutes before attempting to log in once more. Your cooperation is appreciated. Thank you!\n\nIf problem still persist,\nKindly try to do this. Go to your mobile phone settings>Manager App>Search the game application>Clear data cache then restart again your game account and try again. Thank you!',
+          options: [
+            { id: 'learn_more', text: 'Learn more' },
+            { id: 'main_menu', text: 'Go back to main menu' }
+          ]
           };
           break;
 
@@ -649,6 +660,10 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'Regrettably, the game room you are attempting to access is currently at maximum capacity with players. Kindly consider retrying your entry after a duration of 1 hour or explore an alternative game room. We appreciate your understanding. Thank you.'
+            ,options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
           };
           break;
 
@@ -656,6 +671,10 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'Experiencing losses is a natural element of the game – there are moments of both winning and losing. Maintain your betting activity, for I am optimistic that fortune will smile upon you on this occasion.\n\nHowever, sir, you can still earn bonuses by inviting your friends to download and participate in our game.',
+          options: [
+            { id: 'learn_more', text: 'Learn more' },
+            { id: 'main_menu', text: 'Go back to main menu' }
+          ]
           };
           break;
 
@@ -663,6 +682,10 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'To win, you must be familiarized yourself in the game and take it seriously whenever you are playing. We also advised that you play in other gameroom because you never know where your luck will take you. If you want to continue having fun and playing, please recharge more and reach a high VIP level to receive a greater daily bonus',
+          options: [
+            { id: 'learn_more', text: 'Learn more' },
+            { id: 'main_menu', text: 'Go back to main menu' }
+          ]
           };
           break;
 
@@ -694,14 +717,19 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    if (chatContainer.current) {
-      chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
+
   const renderMessages = () => {
     return messages.map((message, index) => (
-      <div key={index} className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
+      <div
+        key={index}
+        className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}
+        ref={index === messages.length - 1 ? lastMessageRef : null}
+      >
         <div
           className={`inline-block p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-700 text-white' : 'bg-blue-100 text-black'}`}
           dangerouslySetInnerHTML={{ __html: message.content }}
@@ -725,46 +753,57 @@ const Chat = () => {
 
 
   return (
-    <div className="h-full flex flex-col">
-      {isModalOpen && (
-        <div className="modal fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-            <h2 className="text-lg font-bold mb-4 text-blue-400">
-              Please enter your details to proceed
-            </h2>
-            <input
-              type="text"
-              name="gameId"
-              placeholder="Game ID"
-              value={userDetails.gameId}
-              onChange={handleDetailsChange}
-              className="block w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-            />
-            <input
-              type="text"
-              name="phoneNumber"
-              placeholder="Phone Number"
-              value={userDetails.phoneNumber}
-              onChange={handleDetailsChange}
-              className="block w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-            />
-            <button
-              onClick={handleModalSubmit}
-              className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition duration-200 w-full"
-            >
-              Submit
-            </button>
-          </div>
+    <div ref={chatContainer}>
+      <div className="bg-blue-800 text-white p-4 flex items-center gap-4">
+        <img
+          src="/chatbotlogo.jpg"
+          alt="chatbotlogo"
+          className="h-12 w-12 rounded-full"
+        />
+        <div>
+          <h1 className="text-xl font-bold">Goldsbet</h1>
+          <p className="text-sm text-gray-300">Ask anything</p>
         </div>
-      )}
+      </div>
+      <div className="h-full flex flex-col">
+        {isModalOpen && (
+          <div className="animation-popup modal fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+              <h2 className="text-lg font-bold mb-4 text-blue-400">
+                Please enter your details to proceed
+              </h2>
+              <input
+                type="number"
+                name="gameId"
+                placeholder="Game ID"
+                value={userDetails.gameId}
+                onChange={handleDetailsChange}
+                className="block w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              />
+              <input
+                type="number"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                value={userDetails.phoneNumber}
+                onChange={handleDetailsChange}
+                className="block w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              />
+              <button
+                onClick={handleModalSubmit}
+                className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition duration-200 w-full"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        )}
 
-      {!isModalOpen && (
         <div className="flex-grow flex flex-col">
-          <div ref={chatContainer} className="flex-grow overflow-y-auto p-4">
+          <div className="flex-grow overflow-y-auto p-4">
             {renderMessages()}
             {loading && <div className="text-center text-gray-500">Thinking...</div>}
           </div>
-          <form onSubmit={handleSubmit} className="p-4 border-t">
+          <form onSubmit={handleSubmit} className="p-4 border-t bg-white">
             <div className="flex">
               <input
                 type="text"
@@ -783,7 +822,7 @@ const Chat = () => {
             </div>
           </form>
         </div>
-      )}
+      </div>
     </div>
   );
 

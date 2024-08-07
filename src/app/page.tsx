@@ -1,24 +1,19 @@
-import Image from "next/image";
+import './page.css';
 import Chat from "@/app/chat";
+import ChatWidget from "@/components/ChatWidget";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black p-4">
-      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="bg-blue-800 text-white p-4 flex items-center gap-4">
-          <img
-            src="/chatbotlogo.jpg"
-            alt="chatbotlogo"
-            className="h-12 w-12 rounded-full"
-          />
-          <div>
-            <h1 className="text-xl font-bold">Goldsbet</h1>
-            <p className="text-sm text-gray-300">Ask anything</p>
+    <main className="min-h-screen bg-black transition-all transition-delay-300">
+      <div className="h-[calc(100vh-2rem)] overflow-y-auto p-4 relative">
+        <div id="chat-ctn" className="chat-ctn hidden custom-scrollbar">
+          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-auto">
+            <Chat />
           </div>
         </div>
-        <div className="h-[calc(100vh-8rem)] overflow-y-auto p-4">
-          <Chat />
-        </div>
+      </div>
+      <div id="chat-widget" className="">
+      <ChatWidget />
       </div>
     </main>
   );
