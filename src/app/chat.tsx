@@ -244,7 +244,7 @@ const Chat = () => {
         case 'My recharge has not come yet, please check - Mera recharge abhee tak nahi aya hai, kripya kr check kr len':
           botResponse = {
             role: 'system',
-            content: 'Please send us a screenshot of your PAYMENT RECEIPT with the exact date and time with amount and UTR number or reference number On Our Email. Thank you.\n\nHumen apni Reciept bejhen Jis Pr samay aur Tareekh Dono Ho. Apni Receipt Humen iss Email Par Send Karen.',
+            content: 'Please send us a screenshot of your PAYMENT RECEIPT with the exact date and time with amount and UTR number or reference number on our email on Golsbetvip@gmail.com. Thank you. Humen apni Reciept bejhen Jis Pr samay aur Tareekh Dono Ho. Apni Receipt Humen iss Email Par Send Karen.',
           };
           break;
 
@@ -504,7 +504,7 @@ khel ko behatar dhang se samajhane ke lie krpaya khel ke niyam aur nirdesh padhe
             content: `
             <div class="formatted-text">
               <strong>Why is my withdraw PROCESSING?</strong><br>
-              After reviewing our records, we can see that your withdrawal is currently being processed. Kindly exercise patience while waiting. Typically, withdrawals are processed promptly (within 5-10 minutes). However, there might be occasions where it could take up to a maximum of 24-72 hours due to potential delays from the bank. If the issue persists beyond the 24-72 hour waiting period, please enter the precise withdrawal order number and attach a screenshot. Thank you!
+              After reviewing our records, we can see that your withdrawal is currently being processed. Kindly exercise patience while waiting. Typically, withdrawals are processed promptly (within 5-10 minutes). However, there might be occasions where it could take up to a maximum of 24-72 hours due to potential delays from the bank. If the issue persists beyond the 24-72 hour waiting period, please mail us the precise withdrawal order number and attach a screenshot on Goldsbetvip@gmail.com. Thank you!
             </div>`,
             options: [
               { id: 'learn_more', text: 'Learn more' },
