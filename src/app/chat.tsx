@@ -135,7 +135,7 @@ const Chat = () => {
               { id: 'option1', text: 'How to play game? - Game kaise khelen?' },
               { id: 'option2', text: 'Help me bind my bank account - Mere bank khaate ko Game se Jodne mein meree sahaayata karen.' },
               { id: 'option3', text: 'Help me bind my UPI account - Meri UPI Ko Game Account se Jodney Me Meri Sahatya karen' },
-              { id: 'option3', text: 'Forgot password - Password bhool gaye' },
+              { id: 'option3', text: 'Forgot Password - Password bhool gaye' },
             ]
           };
           break;
@@ -400,9 +400,9 @@ const Chat = () => {
             role: 'system',
             content: `For better understanding of the game, please read the rules and instructions of the game. The rules are inside every game. You can find it.Thank you.
 
-khel ko behatar dhang se samajhane ke lie krpaya khel ke niyam aur nirdesh padhen. niyam har khel ke andar hote hain. aap ise skreen ke ooparee daen kone mein heere par pa sakate hain. dhanyavaad.
+            khel ko behatar dhang se samajhane ke lie krpaya khel ke niyam aur nirdesh padhen. niyam har khel ke andar hote hain. aap ise skreen ke ooparee daen kone mein heere par pa sakate hain. dhanyavaad.
 
-<img src="/howtoplaygame.jpg" alt="Game Instructions" style={{ maxWidth: '100%', height: 'auto' }} />`,
+            <img src="/howtoplaygame.jpg" alt="Game Instructions" style={{ maxWidth: '100%', height: 'auto' }} />`,
             options: [
               { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
@@ -449,7 +449,7 @@ khel ko behatar dhang se samajhane ke lie krpaya khel ke niyam aur nirdesh padhe
           };
           break;
 
-        case 'Forget Password - paasavard bhool gae':
+        case 'Forgot Password - Password bhool gaye':
           botResponse = {
             role: 'system',
             content: `
