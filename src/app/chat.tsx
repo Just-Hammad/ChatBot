@@ -29,8 +29,12 @@ const Chat = () => {
 
   const initialMessage: Message = {
     role: 'system',
-    content: 'Hey there! welcome to customer service. What can I do for you?.......Suno!! grahak seva mein aapka swagat hai',
-    options: [
+    content: `
+    Welcome to GOLDSBET! Our AI bot will respond to your concern, so please click on your concern the answer will all be given to you. Thank you!<br><br>
+    We encourage you to join our Telegram Public Discussions Group and Channel for the latest updates! Click these links to join:<br>
+    <a href="https://t.me/Goldsbet_VIP" target="_blank" style="text-decoration: underline; color: blue;">https://t.me/Goldsbet_VIP</a><br>
+    <a href="https://t.me/+Z4mYeHQsJUg0OWNl" target="_blank" style="text-decoration: underline; color: blue;">https://t.me/+Z4mYeHQsJUg0OWNl</a>
+  `, options: [
       { id: 'option1', text: 'General Questions - samanya sawal' },
       { id: 'option2', text: 'New Player - nae khilaadee' },
       { id: 'option3', text: 'Recharge Problem - recharge ki samasya' },
@@ -55,8 +59,8 @@ const Chat = () => {
       ]);
     }
   };
-  
-  
+
+
   const handleDetailsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserDetails((prevDetails) => ({
       ...prevDetails,
@@ -83,7 +87,13 @@ const Chat = () => {
         setIsUserDetailsCollected(true);
         setMessages((prevMessages) => [...prevMessages, initialMessage]);
       } else {
-        setMessages((prevMessages) => [...prevMessages, { role: 'system', content: 'Invalid format. Please enter your Game ID and phone number in the format: GameID,PhoneNumber' }]);
+        setMessages((prevMessages) => [...prevMessages, {
+          role: 'system',
+          content: `
+          <p>For More Information Kindly Visit Our Website <a href="https://goldsbet.com" target="_blank" style="text-decoration: underline; color: blue;">GOLDSBET.COM</a></p>
+          <p>For More Inquiries Please Send us Email On <a href="mailto:Goldsbetvip@gmail.com" style="text-decoration: underline; color: blue;">Goldsbetvip@gmail.com</a></p>
+        `
+        }]);
       }
     } else {
       // Existing code for handling main menu options
@@ -210,7 +220,7 @@ const Chat = () => {
           </div>
               `,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -226,7 +236,7 @@ const Chat = () => {
             </div>
             `,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -239,10 +249,11 @@ const Chat = () => {
           <div class="formatted-text">
             <strong>Frozen Account</strong><br>
             Players who open multiple or fraudulent accounts will be disqualified from the game. The remaining amount may be forfeited and the account will be frozen.
+            For the solution you have to register new account on GOLDSBET.COM & make you must make your account valid and donot use any multiple accounts in future
           </div>
               `,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -260,7 +271,7 @@ const Chat = () => {
           </div>
               `,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -272,13 +283,22 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'To top up, simply tap on "Deposit," select your desired amount and preferred payment method. Following that, fulfill the KYC requirements by providing the necessary information. Please ensure that you finalize your payment processing before you exit. Much appreciated.',
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
           };
+
           break;
 
         case 'My recharge has not come yet, please check - Mera recharge abhee tak nahi aya hai, kripya kr check kr len':
           botResponse = {
             role: 'system',
             content: 'Please send us a screenshot of your PAYMENT RECEIPT with the exact date and time with amount and UTR number or reference number on our email on Goldsbetvip@gmail.com. Thank you. Humen apni Reciept bejhen Jis Pr samay aur Tareekh Dono Ho. Apni Receipt Humen iss Email Par Send Karen.',
+          options: [
+            { id: 'learn_more', text: 'Learn more' },
+            { id: 'main_menu', text: 'Go back to main menu' }
+          ]
           };
           break;
 
@@ -288,7 +308,7 @@ const Chat = () => {
             role: 'system',
             content: "Usually, the withdraw is immediately (5 To 45minutes). But sometimes, it will be at most up to 24-72 hours due to the bank delay, but you can track your withdrawal with our Customer Support for further help.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -299,7 +319,7 @@ const Chat = () => {
             role: 'system',
             content: "Usually the recharge credit to your game account immediately (5-10min), but sometimes due to the delay of bank, we cannot receive your payment to your game account immediately, but you can track your payment with our Customer Support for further help.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -310,7 +330,7 @@ const Chat = () => {
             role: 'system',
             content: "Log On is only for registered players. Click Log on button. Enter your registered mobile number and the password you have set.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -321,7 +341,7 @@ const Chat = () => {
             role: 'system',
             content: "Click Withdraw on your game lobby, if you are a new player you need to bind you Bank account first after binding enter your desire amount to withdraw, then click Withdraw button.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -332,7 +352,7 @@ const Chat = () => {
             role: 'system',
             content: "For better understanding of the game, please read the rules and instructions of the game. The rules are inside every game. Thank you.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -343,7 +363,7 @@ const Chat = () => {
             role: 'system',
             content: "Open your game account, at the game lobby page click Deposit. Select your desire amount of recharge then you may now proceed by clicking Add Cash. Select your desire method of payment and click Next step then it will automatically direct you with the payment merchant page",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -354,7 +374,7 @@ const Chat = () => {
             role: 'system',
             content: "For new players please click On Register. Then proceed to Fill out the information with your mobile phone number and set your own desire password. Click OTP (One Time Pin) then you will receive code through text. After you received the code click Confirm to completely registered. Welcome and enjoy the game!",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -365,7 +385,7 @@ const Chat = () => {
             role: 'system',
             content: "Our Game application make use of highly advanced security features to ensure the safekeeping of financial and personal data gathered from players. We make sure that we keep up with data protection legislation and that their slots and other games get audited by external security companies.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -376,7 +396,7 @@ const Chat = () => {
             role: 'system',
             content: "Yes. Please don't worry about your money because we assure you that it is secured during the process.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -387,7 +407,7 @@ const Chat = () => {
             role: 'system',
             content: "Just message to the AI that you need talk to a real customer care or human, then wait patiently for the connection.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -398,7 +418,7 @@ const Chat = () => {
             role: 'system',
             content: "Click Forget password button to set again a new password. Fill out the asked information and then Click OTP (One Time Pin) then you will receive code through text. After you received the code click OK to completely change your new password. It can be seen on Log on.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -409,7 +429,7 @@ const Chat = () => {
             role: 'system',
             content: "This is for the safety of our players. Our company is making sure that we will send the withdrawal money to the correct person. Please don't worry, because all player information is secured.",
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -418,7 +438,10 @@ const Chat = () => {
         case 'Learn more':
           botResponse = {
             role: 'system',
-            content: "I'm sorry, but I don't have any additional information on this topic at the moment. Is there anything else I can help you with?",
+            content: `
+            <p>For More Information Kindly Visit Our Website <a href="https://goldsbet.com" target="_blank" style="text-decoration: underline; color: blue;">GOLDSBET.COM</a></p>
+            <p>For More Inquiries Please Send us Email On <a href="mailto:Goldsbetvip@gmail.com" style="text-decoration: underline; color: blue;">Goldsbetvip@gmail.com</a></p>
+          `,
             options: [
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
@@ -439,7 +462,7 @@ const Chat = () => {
 
             <img src="/howtoplaygame.jpg" alt="Game Instructions" style={{ maxWidth: '100%', height: 'auto' }} />`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -459,7 +482,7 @@ const Chat = () => {
           Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided to Goldsbetvip@gmail.com. Thank you.
               `,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -478,7 +501,7 @@ const Chat = () => {
               Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided. Thank you.
             </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -493,7 +516,7 @@ const Chat = () => {
               "Forget Password" par Click karen. Apna phone number aur naya password darj karen. Uske baad, aapko game account ka password reset karne ke liye OTP ya verification code ke saath ek SMS prapt hoga. Taaki aap apne surakshit banke se apna paisa nikaal saken. Dhanyavaad.
             </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -511,7 +534,7 @@ const Chat = () => {
               <img src="/howtowithdraw.jpg" alt="Game Instructions" style={{ maxWidth: '100%', height: 'auto' }} />
               </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -526,7 +549,7 @@ const Chat = () => {
               Sir upon checking your withdrawal is still being reviewed, please wait patiently because we are assuring you that the game runs fair and square for all our players.
             </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -541,16 +564,16 @@ const Chat = () => {
               After reviewing our records, we can see that your withdrawal is currently being processed. Kindly exercise patience while waiting. Typically, withdrawals are processed promptly (within 5-10 minutes). However, there might be occasions where it could take up to a maximum of 24-72 hours due to potential delays from the bank. If the issue persists beyond the 24-72 hour waiting period, please mail us the precise withdrawal order number and attach a screenshot on Goldsbetvip@gmail.com. Thank you!
             </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
           break;
 
-          case 'Withdraw Not Received After Success?':
-            botResponse = {
-              role: 'system',
-              content: `
+        case 'Withdraw Not Received After Success?':
+          botResponse = {
+            role: 'system',
+            content: `
           <div class="formatted-text">
             We can see that your withdrawal is successful. Please wait patiently as typically, withdrawals are processed promptly (within 5-10 minutes). However, there might be issues due to the bank, and it could take 3 to 5 business days. If the issue persists beyond this waiting period, please email us at <a href="mailto:Goldsbetvip@gmail.com">Goldsbetvip@gmail.com</a>.<br><br>
             <strong>Required Documents:</strong><br>
@@ -561,13 +584,13 @@ const Chat = () => {
             Thank you!
           </div>
               `,
-              options: [
-                
-                { id: 'main_menu', text: 'Go back to main menu' }
-              ]
-            };
-            break;
-          
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
+          };
+          break;
+
         case 'Why my withdraw returned on game account?':
           botResponse = {
             role: 'system',
@@ -577,7 +600,7 @@ const Chat = () => {
               The primary causes include issues related to bank failure, exceeding withdrawal limits, and providing incorrect bank information. For a more precise understanding of the reasons, please consider attaching a screenshot of your withdrawal page. This will enable our human customer support team to provide you with an accurate response. We appreciate your cooperation.
             </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -592,7 +615,7 @@ const Chat = () => {
               Collecting your personal information and verifying your ID is crucial in the verification process for various reasons. It ensures identity verification, prevents fraud, complies with legal regulations, enhances security, verifies age, and promotes responsible gaming. Overall, these measures maintain platform security, legality, and integrity while safeguarding both you as the player and the platform.
             </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -607,7 +630,7 @@ const Chat = () => {
               Please be aware that our platform operates on a Technology Running System, and thus, game control is beyond our scope. However, if you adhere to game rules and maintain sufficient bets, you can avoid any issues related to wagering. Once you enter the game room, events occur independently of our influence. Rest assured, fairness in game outcomes is guaranteed for all players. Thank you.
             </div>`,
             options: [
-              
+              { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
@@ -734,7 +757,7 @@ const Chat = () => {
           </div>
         </div>
       )}
-  
+
       {!isModalOpen && (
         <div className="flex-grow flex flex-col">
           <div ref={chatContainer} className="flex-grow overflow-y-auto p-4">
@@ -763,7 +786,7 @@ const Chat = () => {
       )}
     </div>
   );
-  
+
 };
 
 export default Chat;
