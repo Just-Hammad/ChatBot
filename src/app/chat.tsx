@@ -17,17 +17,17 @@ const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-
-  const initialMessage: Message = {
-    role: 'system',
-    content: 'Please enter your Game ID and phone number to proceed (format: GameID,PhoneNumber)'
-  };
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
   const [userDetails, setUserDetails] = useState<{ gameId: string, phoneNumber: string }>({ gameId: '', phoneNumber: '' });
   const [isUserDetailsCollected, setIsUserDetailsCollected] = useState<boolean>(false);
 
+  // const initialMessage: Message = {
+  //   role: 'system',
+  //   content: 'Please enter your Game ID and phone number to proceed (format: GameID,PhoneNumber)'
+  // };
 
-  const mainMenuMessage: Message = {
+
+  const initialMessage: Message = {
     role: 'system',
     content: 'Hey there! welcome to customer service. What can I do for you?.......Suno!! grahak seva mein aapka swagat hai',
     options: [
@@ -36,17 +36,33 @@ const Chat = () => {
       { id: 'option3', text: 'Recharge Problem - recharge ki samasya' },
       { id: 'option4', text: 'Game issue - khel ank' },
       { id: 'option5', text: 'Withdraw Problem - samasaya vapas len' },
-      { id: 'option1', text: 'Birthday Bonus' },
-      { id: 'option2', text: 'Wagering' },
-      { id: 'option3', text: 'Frozen Account' },
+      { id: 'option6', text: 'Birthday Bonus' },
+      { id: 'option7', text: 'Wagering' },
+      { id: 'option8', text: 'Frozen Account' },
+      { id: 'option9', text: 'How to become an Agent' },
     ]
   };
 
-
-  useEffect(() => {
-    // Initial bot message with options
-    setMessages([initialMessage]);
-  }, []);
+  const handleModalSubmit = () => {
+    if (userDetails.gameId && userDetails.phoneNumber) {
+      setIsModalOpen(false);
+      setMessages((prevMessages) => [...prevMessages, initialMessage]);
+    } else {
+      // Handle invalid input
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { role: 'system', content: 'Please enter both Game ID and Phone Number.' }
+      ]);
+    }
+  };
+  
+  
+  const handleDetailsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUserDetails((prevDetails) => ({
+      ...prevDetails,
+      [event.target.name]: event.target.value
+    }));
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
@@ -65,7 +81,7 @@ const Chat = () => {
       if (gameId && phoneNumber) {
         setUserDetails({ gameId: gameId.trim(), phoneNumber: phoneNumber.trim() });
         setIsUserDetailsCollected(true);
-        setMessages((prevMessages) => [...prevMessages, mainMenuMessage]);
+        setMessages((prevMessages) => [...prevMessages, initialMessage]);
       } else {
         setMessages((prevMessages) => [...prevMessages, { role: 'system', content: 'Invalid format. Please enter your Game ID and phone number in the format: GameID,PhoneNumber' }]);
       }
@@ -163,6 +179,7 @@ const Chat = () => {
               { id: 'option4', text: 'Why my withdraw returned on game account?' },
               { id: 'option5', text: 'Why should I provide my ID?' },
               { id: 'option6', text: 'I am trying to withdraw, why am I getting WAGERS?' },
+              { id: 'option7', text: 'Withdraw Not Received After Success?' },
             ]
           };
           break;
@@ -224,10 +241,28 @@ const Chat = () => {
             Players who open multiple or fraudulent accounts will be disqualified from the game. The remaining amount may be forfeited and the account will be frozen.
           </div>
               `,
-              options: [
-                { id: 'learn_more', text: 'Learn more' },
-                { id: 'main_menu', text: 'Go back to main menu' }
-              ]
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
+          };
+          break;
+
+        case 'How to become an Agent':
+          botResponse = {
+            role: 'system',
+            content: `
+          <div class="formatted-text">
+            <strong>How to become an Agent</strong><br>
+            To become agent share your referral links  with your friends & family members to get more commission bonuses & agent salaries 
+            kindly check refer & Earn section in offer Tab For more details of your subordinates kindly check agent tab in lobby
+            <img src="/howtobecomeagent.jpg" alt="Game Instructions" style={{ maxWidth: '100%', height: 'auto' }} />
+          </div>
+              `,
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
           };
           break;
 
@@ -512,6 +547,27 @@ const Chat = () => {
           };
           break;
 
+          case 'Withdraw Not Received After Success?':
+            botResponse = {
+              role: 'system',
+              content: `
+          <div class="formatted-text">
+            We can see that your withdrawal is successful. Please wait patiently as typically, withdrawals are processed promptly (within 5-10 minutes). However, there might be issues due to the bank, and it could take 3 to 5 business days. If the issue persists beyond this waiting period, please email us at <a href="mailto:Goldsbetvip@gmail.com">Goldsbetvip@gmail.com</a>.<br><br>
+            <strong>Required Documents:</strong><br>
+            - Game Account<br>
+            - Withdrawal Screenshot<br>
+            - Withdrawal Amount<br>
+            - Bank Statement in PDF Format with Password<br><br>
+            Thank you!
+          </div>
+              `,
+              options: [
+                { id: 'learn_more', text: 'Learn more' },
+                { id: 'main_menu', text: 'Go back to main menu' }
+              ]
+            };
+            break;
+          
         case 'Why my withdraw RETURNED on game account?':
           botResponse = {
             role: 'system',
@@ -624,7 +680,7 @@ const Chat = () => {
     return messages.map((message, index) => (
       <div key={index} className={`mb-4 ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
         <div
-          className={`inline-block p-2 rounded-lg ${message.role === 'user' ? 'bg-green-700 text-white' : 'bg-gray-200 text-black'}`}
+          className={`inline-block p-2 rounded-lg ${message.role === 'user' ? 'bg-blue-700 text-white' : 'bg-blue-100 text-black'}`}
           dangerouslySetInnerHTML={{ __html: message.content }}
         />
         {message.options && (
@@ -647,30 +703,67 @@ const Chat = () => {
 
   return (
     <div className="h-full flex flex-col">
-      <div ref={chatContainer} className="flex-grow overflow-y-auto p-4">
-        {renderMessages()}
-        {loading && <div className="text-center text-gray-500">Thinking...</div>}
-      </div>
-      <form onSubmit={handleSubmit} className="p-4 border-t">
-        <div className="flex">
-          <input
-            type="text"
-            value={input}
-            onChange={handleInputChange}
-            placeholder="Type your message..."
-            className="flex-grow px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-          />
-          <button
-            type="submit"
-            className="bg-green-800 text-white px-4 py-2 rounded-r-lg hover:bg-green-500 transition duration-200"
-            disabled={loading}
-          >
-            Send
-          </button>
+      {isModalOpen && (
+        <div className="modal fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 className="text-lg font-bold mb-4 text-blue-400">
+              Please enter your details to proceed
+            </h2>
+            <input
+              type="text"
+              name="gameId"
+              placeholder="Game ID"
+              value={userDetails.gameId}
+              onChange={handleDetailsChange}
+              className="block w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+            />
+            <input
+              type="text"
+              name="phoneNumber"
+              placeholder="Phone Number"
+              value={userDetails.phoneNumber}
+              onChange={handleDetailsChange}
+              className="block w-full mb-4 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+            />
+            <button
+              onClick={handleModalSubmit}
+              className="bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-500 transition duration-200 w-full"
+            >
+              Submit
+            </button>
+          </div>
         </div>
-      </form>
+      )}
+  
+      {!isModalOpen && (
+        <div className="flex-grow flex flex-col">
+          <div ref={chatContainer} className="flex-grow overflow-y-auto p-4">
+            {renderMessages()}
+            {loading && <div className="text-center text-gray-500">Thinking...</div>}
+          </div>
+          <form onSubmit={handleSubmit} className="p-4 border-t">
+            <div className="flex">
+              <input
+                type="text"
+                value={input}
+                onChange={handleInputChange}
+                placeholder="Type your message..."
+                className="flex-grow px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              />
+              <button
+                type="submit"
+                className="bg-blue-800 text-white px-4 py-2 rounded-r-lg hover:bg-blue-500 transition duration-200"
+                disabled={loading}
+              >
+                Send
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
+  
 };
 
 export default Chat;
