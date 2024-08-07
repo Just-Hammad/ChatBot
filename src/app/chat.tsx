@@ -568,12 +568,12 @@ const Chat = () => {
             };
             break;
           
-        case 'Why my withdraw RETURNED on game account?':
+        case 'Why my withdraw returned on game account?':
           botResponse = {
             role: 'system',
             content: `
             <div class="formatted-text">
-              <strong>Why my withdraw RETURNED on game account?</strong><br>
+              <strong>Why my withdraw returned on game account?</strong><br>
               The primary causes include issues related to bank failure, exceeding withdrawal limits, and providing incorrect bank information. For a more precise understanding of the reasons, please consider attaching a screenshot of your withdrawal page. This will enable our human customer support team to provide you with an accurate response. We appreciate your cooperation.
             </div>`,
             options: [
