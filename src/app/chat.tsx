@@ -59,7 +59,6 @@ const Chat = () => {
     const userMessage: Message = { role: 'user', content: input };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
     setInput('');
-    setLoading(true);
 
     if (!isUserDetailsCollected) {
       const [gameId, phoneNumber] = input.split(',');
