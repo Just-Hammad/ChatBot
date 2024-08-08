@@ -49,6 +49,8 @@ const Chat = () => {
       { id: 'option7', text: 'Wagering' },
       { id: 'option8', text: 'Frozen Account' },
       { id: 'option9', text: 'How to become an Agent' },
+      { id: 'option10', text: 'Bind Bankcard' },
+      { id: 'option11', text: 'Bind UPI' },
     ]
   };
 
@@ -101,7 +103,7 @@ const Chat = () => {
         }]);
       }
     } else {
-      // Existing code for handling main menu options
+      // for handling main menu options
       try {
         await new Promise(resolve => setTimeout(resolve, 1000));
 
@@ -211,6 +213,36 @@ const Chat = () => {
             ]
           };
           break;
+
+        case 'Bind Bankcard':
+          botResponse = {
+            role: 'system',
+            content: `<p>If you have deposited already you can add 5 Bankcards and 3 UPI. We will help you bind your BANK account. Please provide bank card information in this format. Please type in CAPITAL LETTERS. Thank you!</p>
+            <p>Account number:</p>
+            <p>IFSC:</p>
+            <p>BANK NAME:</p>
+            <p>Name:</p>
+            <p>Kindly send a screenshot of your Bank account/ Passbook that shows the details that you have provided. Thank you.</p>
+            <p>Send us On Email <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a></p>`
+            , options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
+          };
+
+        case 'Bind UPI':
+          botResponse = {
+            role: 'system',
+            content: `<p>If you have deposited already you can add 5 Bankcards and 3 UPI. We will help you bind your UPI. Please provide UPI information in this format. Please type in CAPITAL LETTERS. Thank you!</p>
+            <p>UPI:</p>
+            <p>Name On UPI:</p>
+            <p>Kindly send a screenshot of your Bank account/ Passbook that shows the details that you have provided. Thank you.</p>
+            <p>Send us On Email <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a></p>
+            `, options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
+          };
 
         case 'Birthday Bonus':
           botResponse = {
@@ -649,10 +681,10 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'To achieve improved outcomes, kindly begin by restarting your Game app and ensuring a reliable and stable internet connection. Following this, we recommend waiting for a minimum of 15 minutes before attempting to log in once more. Your cooperation is appreciated. Thank you!\n\nIf problem still persist,\nKindly try to do this. Go to your mobile phone settings>Manager App>Search the game application>Clear data cache then restart again your game account and try again. Thank you!',
-          options: [
-            { id: 'learn_more', text: 'Learn more' },
-            { id: 'main_menu', text: 'Go back to main menu' }
-          ]
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
           };
           break;
 
@@ -660,7 +692,7 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'Regrettably, the game room you are attempting to access is currently at maximum capacity with players. Kindly consider retrying your entry after a duration of 1 hour or explore an alternative game room. We appreciate your understanding. Thank you.'
-            ,options: [
+            , options: [
               { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
@@ -671,10 +703,10 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'Experiencing losses is a natural element of the game – there are moments of both winning and losing. Maintain your betting activity, for I am optimistic that fortune will smile upon you on this occasion.\n\nHowever, sir, you can still earn bonuses by inviting your friends to download and participate in our game.',
-          options: [
-            { id: 'learn_more', text: 'Learn more' },
-            { id: 'main_menu', text: 'Go back to main menu' }
-          ]
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
           };
           break;
 
@@ -682,10 +714,10 @@ const Chat = () => {
           botResponse = {
             role: 'system',
             content: 'To win, you must be familiarized yourself in the game and take it seriously whenever you are playing. We also advised that you play in other gameroom because you never know where your luck will take you. If you want to continue having fun and playing, please recharge more and reach a high VIP level to receive a greater daily bonus',
-          options: [
-            { id: 'learn_more', text: 'Learn more' },
-            { id: 'main_menu', text: 'Go back to main menu' }
-          ]
+            options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
           };
           break;
 
