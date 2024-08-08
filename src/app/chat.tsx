@@ -217,32 +217,32 @@ const Chat = () => {
         case 'Bind Bankcard':
           botResponse = {
             role: 'system',
-            content: `<p>If you have deposited already you can add 5 Bankcards and 3 UPI. We will help you bind your BANK account. Please provide bank card information in this format. Please type in CAPITAL LETTERS. Thank you!</p>
-            <p>Account number:</p>
-            <p>IFSC:</p>
-            <p>BANK NAME:</p>
-            <p>Name:</p>
-            <p>Kindly send a screenshot of your Bank account/ Passbook that shows the details that you have provided. Thank you.</p>
-            <p>Send us On Email <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a></p>`
-            , options: [
-              { id: 'learn_more', text: 'Learn more' },
-              { id: 'main_menu', text: 'Go back to main menu' }
-            ]
-          };
-
-        case 'Bind UPI':
-          botResponse = {
-            role: 'system',
-            content: `<p>If you have deposited already you can add 5 Bankcards and 3 UPI. We will help you bind your UPI. Please provide UPI information in this format. Please type in CAPITAL LETTERS. Thank you!</p>
-            <p>UPI:</p>
-            <p>Name On UPI:</p>
-            <p>Kindly send a screenshot of your Bank account/ Passbook that shows the details that you have provided. Thank you.</p>
-            <p>Send us On Email <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline">Goldsbetvip@gmail.com</a></p>
+            content: `<p>If you have deposited already you can add <strong>5 Bankcards</strong> and <strong>3 UPI</strong>. We will help you bind your UPI. Please provide UPI information in this format. Please type in <strong>CAPITAL LETTERS</strong>. Thank you!</p>
+            <p><strong>UPI:</strong></p>
+            <p><strong>Name On UPI:</strong></p>
+            <p>Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided. Thank you.</p>
+            <p>Send us On Email <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline"><strong>Goldsbetvip@gmail.com</strong></a></p>
             `, options: [
               { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
             ]
           };
+          break;
+
+        case 'Bind UPI':
+          botResponse = {
+            role: 'system',
+            content: `<p>If you have deposited already you can add <strong>5 Bankcards</strong> and <strong>3 UPI</strong>. We will help you bind your UPI. Please provide UPI information in this format. Please type in <strong>CAPITAL LETTERS</strong>. Thank you!</p>
+            <p><strong>UPI:</strong></p>
+            <p><strong>Name On UPI:</strong></p>
+            <p>Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided. Thank you.</p>
+            <p>Send us On Email <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline"><strong>Goldsbetvip@gmail.com</strong></a></p>
+            `, options: [
+              { id: 'learn_more', text: 'Learn more' },
+              { id: 'main_menu', text: 'Go back to main menu' }
+            ]
+          };
+          break
 
         case 'Birthday Bonus':
           botResponse = {
