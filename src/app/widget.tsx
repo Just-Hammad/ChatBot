@@ -1,34 +1,22 @@
 // pages/widget.tsx
 import Chat from '@/app/chat';
-import Head from 'next/head';
+import ChatWidget from '@/components/ChatWidget';
+import './page.css';
 
 const Widget = () => {
-  return (
-    <>
-      <Head>
-        <title>Chat Widget</title>
-        <style>
-          {`
-            .chat-widget-container {
-              width: 300px;
-              height: 400px;
-              border: 1px solid #ccc;
-              border-radius: 8px;
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-              position: relative;
-            }
-            .chat-widget-container iframe {
-              width: 100%;
-              height: 100%;
-              border: none;
-            }
-          `}
-        </style>
-      </Head>
-      <div className="chat-widget-container">
-        <Chat />
+return (
+    <main className="min-h-screen bg-black transition-all transition-delay-300">
+      <div className="h-[calc(100vh-2rem)] overflow-y-auto p-4 relative">
+        <div id="chat-ctn" className="chat-ctn hidden custom-scrollbar">
+          <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-auto">
+            <Chat />
+          </div>
+        </div>
       </div>
-    </>
+      <div id="chat-widget" className="">
+      <ChatWidget />
+      </div>
+    </main>
   );
 };
 
