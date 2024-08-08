@@ -1,11 +1,11 @@
 // public/widget.js
 (function() {
   var script = document.createElement('script');
-  script.src = 'http://167.71.205.129/widget'; // Updated URL of the widget page
+  script.src = 'http://167.71.205.129'; // Updated URL of the widget page
   script.async = true;
   script.onload = function() {
     var iframe = document.createElement('iframe');
-    iframe.src = 'http://167.71.205.129/widget'; // Updated URL of the widget page
+    iframe.src = 'http://167.71.205.129'; // Updated URL of the widget page
     iframe.width = '300';
     iframe.height = '400';
     iframe.style.border = 'none';
