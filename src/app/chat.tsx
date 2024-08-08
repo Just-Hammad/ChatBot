@@ -862,7 +862,7 @@ const Chat = () => {
             </form>
           )}
           {isModalOpen && (
-            <div className="background">
+            <div className="background bg-white">
               <div className="area" >
                 <ul className="circles">
                   <li></li>
