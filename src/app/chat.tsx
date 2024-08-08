@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import './background.css'
 
 interface Option {
   id: string;
@@ -840,24 +841,44 @@ const Chat = () => {
             {renderMessages()}
             {loading && <div className="text-center text-gray-500">Thinking...</div>}
           </div>
-          <form onSubmit={handleSubmit} className="p-4 border-t bg-white">
-            <div className="flex">
-              <input
-                type="text"
-                value={input}
-                onChange={handleInputChange}
-                placeholder="Type your message..."
-                className="flex-grow px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-              />
-              <button
-                type="submit"
-                className="bg-blue-800 text-white px-4 py-2 rounded-r-lg hover:bg-blue-500 transition duration-200"
-                disabled={loading}
-              >
-                Send
-              </button>
+          {!isModalOpen && (
+            <form onSubmit={handleSubmit} className="p-4 border-t bg-white">
+              <div className="flex">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={handleInputChange}
+                  placeholder="Type your message..."
+                  className="flex-grow px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+                />
+                <button
+                  type="submit"
+                  className="bg-blue-800 text-white px-4 py-2 rounded-r-lg hover:bg-blue-500 transition duration-200"
+                  disabled={loading}
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          )}
+          {isModalOpen && (
+            <div className="background">
+              <div className="area" >
+                <ul className="circles">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
             </div>
-          </form>
+          )}
         </div>
       </div>
     </div>
