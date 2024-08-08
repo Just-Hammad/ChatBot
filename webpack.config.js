@@ -4,7 +4,7 @@ module.exports = {
   mode: 'production',
   entry: './src/index.tsx', // Your main entry file
   output: {
-    filename: 'widget-bundle.js',
+    filename: 'widget.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'ChatWidget', // Expose your component to global scope
     libraryTarget: 'umd',
