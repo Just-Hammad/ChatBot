@@ -217,11 +217,16 @@ const Chat = () => {
         case 'Bind Bankcard':
           botResponse = {
             role: 'system',
-            content: `<p>If you have deposited already you can add <strong>5 Bankcards</strong> and <strong>3 UPI</strong>. We will help you bind your UPI. Please provide UPI information in this format. Please type in <strong>CAPITAL LETTERS</strong>. Thank you!</p>
-            <p><strong>UPI:</strong></p>
-            <p><strong>Name On UPI:</strong></p>
-            <p>Kindly send a screenshot of your Bank account/Passbook that shows the details that you have provided. Thank you.</p>
-            <p>Send us On Email <a href="mailto:Goldsbetvip@gmail.com" class="text-blue-500 underline"><strong>Goldsbetvip@gmail.com</strong></a></p>
+            content: `<p>If you have deposited already, you can add <strong>5 Bankcards</strong> and <strong>3 UPI</strong>. We will help you bind your <strong>BANK account</strong>. Please provide bank card information in this format. Please type in <strong>CAPITAL LETTERS</strong>. Thank you!</p>
+
+            <p><strong>Account number:</strong></p>
+            <p><strong>IFSC:</strong></p>
+            <p><strong>BANK NAME:</strong></p>
+            <p><strong>Name:</strong></p>
+
+            <p>Kindly send a screenshot of your Bank account/ Passbook that shows the details that you have provided. Thank you.</p>
+
+            <p>Send us On Email <a href="mailto:goldsbetvip@gmail.com" class="text-blue-500 underline">goldsbetvip@gmail.com</a></p>
             `, options: [
               { id: 'learn_more', text: 'Learn more' },
               { id: 'main_menu', text: 'Go back to main menu' }
