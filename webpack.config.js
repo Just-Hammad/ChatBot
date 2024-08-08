@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.tsx', // Your main entry file
+  entry: './src/index.tsx',
   output: {
-    filename: 'widget.js',
+    filename: 'widget-bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'ChatWidget', // Expose your component to global scope
+    library: 'ChatWidget',
     libraryTarget: 'umd',
   },
   module: {
@@ -19,9 +19,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader', 
+          'style-loader',
           'css-loader',
-          'postcss-loader', // Add postcss-loader to handle PostCSS processing
+          'postcss-loader', // Ensure this line is present
         ],
       },
     ],
