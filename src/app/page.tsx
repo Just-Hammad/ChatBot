@@ -1,3 +1,4 @@
+import React from 'react';
 import './page.css';
 import Chat from "@/app/chat";
 import ChatWidget from "@/components/ChatWidget";
