@@ -1,32 +1,42 @@
-// ChatWidget.jsx
-
 "use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, FormEvent } from 'react';
 import './ChatWidget.css';
 
-const SOCKET_SERVER_URL = 'http://localhost:3000';
-
-const handleClick = () => {
-  const chatCtn = document.getElementById("chat-ctn");
-  const chatWidget = document.getElementById("show");
-
-  if (chatCtn.classList.contains("hidden")) {
-    chatCtn.classList.remove("hidden");
-    setTimeout(() => chatCtn.classList.add("show"), 50); // small delay to trigger animation
-  } else {
-    chatCtn.classList.remove("show");
-    setTimeout(() => chatCtn.classList.add("hidden"), 2000); // match transition duration
-  }
-
+interface Message {
+  text: string;
+  isUser: boolean;
 }
-function ChatWidget() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
-  const [socket, setSocket] = useState(null);
-  const chatBodyRef = useRef(null);
 
+function ChatWidget() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [socket, setSocket] = useState<WebSocket | null>(null);
+  const chatBodyRef = useRef<HTMLDivElement>(null);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (message.trim() !== '') {
+      setMessages([...messages, { text: message, isUser: true }]);
+      setMessage('');
+    }
+  };
+
+  const handleClick = () => {
+    const chatCtn = document.getElementById("chat-ctn");
+    const chatWidget = document.getElementById("show");
+
+    if (chatCtn && chatWidget) {
+      if (chatCtn.classList.contains("hidden")) {
+        chatCtn.classList.remove("hidden");
+        setTimeout(() => chatCtn.classList.add("show"), 50);
+      } else {
+        chatCtn.classList.remove("show");
+        setTimeout(() => chatCtn.classList.add("hidden"), 2000);
+      }
+    }
+  };
 
   return (
     <div className={`chat-widget absolute bottom-0 right-0 ${isOpen ? 'open' : ''}`} onClick={handleClick}>
@@ -36,7 +46,7 @@ function ChatWidget() {
       {isOpen && (
         <div className="chat-box">
           <div className="chat-header">
-            <button className="close-btn">
+            <button className="close-btn" onClick={() => setIsOpen(false)}>
               &times;
             </button>
             <h3>Chat</h3>
